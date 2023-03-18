@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ContactForm from './ContactForm/ContactForm';
 
 export class App extends Component {
   state = {
@@ -9,14 +10,8 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
+        <h1>Phonebook</h1>
+        <ContactForm onSubmit={values => console.log('VALUES:', values)} />
       </div>
     );
   }
