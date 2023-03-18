@@ -19,7 +19,11 @@ export class App extends Component {
     });
     console.log('CONTACTS:', this.state.contacts);
   };
-
+  deleteContact = id => {
+    this.setState({
+      contacts: this.state.contacts.filter(contact => contact.id !== id),
+    });
+  };
   render() {
     return (
       <div>
@@ -31,7 +35,10 @@ export class App extends Component {
         />
         <h2>Contacts</h2>
         <ContactsList>
-          <ContactsListElement contacts={this.state.contacts} />
+          <ContactsListElement
+            contacts={this.state.contacts}
+            deleteContact={this.deleteContact}
+          />
         </ContactsList>
       </div>
     );

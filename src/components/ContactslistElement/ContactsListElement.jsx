@@ -4,12 +4,19 @@ import PropTypes from 'prop-types';
 
 class ContactsListElement extends Component {
   render() {
-    const { contacts } = this.props;
+    const { contacts, deleteContact } = this.props;
     return contacts.map(({ name, number, id }) => (
       <li key={id}>
         <span className={css.contactName}>{name}: </span>
-            <span className={css.contactNumber}>{number}</span>
-            <button type="button" >Delete</button>
+        <span className={css.contactNumber}>{number}</span>
+        <button
+          key={id}
+          type="button"
+          className={css.btnDelete}
+          onClick={() => deleteContact(id)}
+        >
+          Delete
+        </button>
       </li>
     ));
   }
