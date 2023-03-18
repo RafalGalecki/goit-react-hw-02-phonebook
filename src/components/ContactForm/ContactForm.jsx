@@ -18,18 +18,18 @@ class ContactForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, number } = this.state;
+    //const { name, number } = this.state;
     const { contacts, addContact } = this.props;
     const contact = {
       id: nanoid(),
       name: this.state.name,
-      number: this.state.number
-    }
-    
+      number: this.state.number,
+    };
 
-    console.log(`name: ${name}, number: ${number}`);
+    addContact(contact);
+    console.log('CONTACTS:', { contacts });
 
-    this.props.onSubmit({ ...this.state });
+    //this.props.onSubmit({ ...this.state });
     this.reset();
   };
   reset = () => {

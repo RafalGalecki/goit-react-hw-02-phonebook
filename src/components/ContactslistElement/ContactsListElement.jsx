@@ -8,7 +8,8 @@ class ContactsListElement extends Component {
     return contacts.map(({ name, number, id }) => (
       <li key={id}>
         <span className={css.contactName}>{name}: </span>
-        <span className={css.contactNumber}>{number}</span>
+            <span className={css.contactNumber}>{number}</span>
+            <button type="button" >Delete</button>
       </li>
     ));
   }
