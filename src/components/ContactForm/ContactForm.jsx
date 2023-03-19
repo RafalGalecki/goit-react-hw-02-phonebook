@@ -81,6 +81,10 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
   name: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  number: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  addContact: PropTypes.func,
 };
+
+
 
 export default ContactForm;

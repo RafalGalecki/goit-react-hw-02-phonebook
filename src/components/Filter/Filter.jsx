@@ -22,4 +22,10 @@ class Filter extends Component {
   }
 }
 
+Filter.propTypes = {
+  value: PropTypes.string,
+  filteredContacts: PropTypes.array,
+  onChange: PropTypes.func,
+};
+
 export default Filter;

@@ -22,4 +22,9 @@ class ContactsListElement extends Component {
   }
 }
 
+ContactsListElement.propTypes = {
+  contacts: PropTypes.array,
+  deleteContact: PropTypes.func,
+};
+
 export default ContactsListElement;
