@@ -4,13 +4,22 @@ import PropTypes from 'prop-types';
 
 class ContactsList extends Component {
   render() {
-    const { children } = this.props;
-    return <ul className={css.ContactsList}>{children}</ul>;
+    const { contactsLength, children } = this.props;
+
+    return (
+      <div className={css.contactsListBox}>
+        <h4>
+          You have {contactsLength} contact{contactsLength === 1 ? null : 's'}
+        </h4>
+        <ul className={css.contactsList}>{children}</ul>
+      </div>
+    );
   }
 }
 
 ContactsList.propTypes = {
   children: PropTypes.node,
+  contactsLength: PropTypes.number,
 };
 
 export default ContactsList;

@@ -36,12 +36,11 @@ class ContactForm extends Component {
     isContact
       ? Notiflix.Notify.warning(`${contact.name} is already in contacts.`, {
           timeout: 3000,
+          position: 'left-top',
+          closeButton: true,
         })
       : addContact(contact);
 
-    console.log('CONTACTS:', { contacts });
-
-    //this.props.onSubmit({ ...this.state });
     this.reset();
   };
   reset = () => {

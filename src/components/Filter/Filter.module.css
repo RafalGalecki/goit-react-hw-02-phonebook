@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: flex-start;
   min-width: 320px;
-  padding: 10px;
   gap: 10px;
 }
 .inputFilter {

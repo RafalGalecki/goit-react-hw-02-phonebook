@@ -3,6 +3,7 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactsList from './ContactsList/ContactsList';
 import ContactsListElement from './ContactslistElement/ContactsListElement';
 import Filter from './Filter/Filter';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -18,7 +19,6 @@ export class App extends Component {
     this.setState({
       contacts: [...this.state.contacts, contact],
     });
-    console.log('CONTACTS:', this.state.contacts);
   };
 
   deleteContact = id => {
@@ -35,7 +35,9 @@ export class App extends Component {
 
   filterContacts = () => {
     const { filter, contacts } = this.state;
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
   };
 
   render() {
@@ -47,11 +49,14 @@ export class App extends Component {
         <ContactForm
           addContact={this.addContact}
           contacts={this.state.contacts}
-          // onSubmit={values => console.log('VALUES:', values)}
         />
         <h2>Contacts</h2>
-        <Filter value={value} filterContacts={this.filterContacts} onChange={this.filter } />
-        <ContactsList>
+        <Filter
+          value={value}
+          filterContacts={this.filterContacts}
+          onChange={this.filter}
+        />
+        <ContactsList contactsLength={this.state.contacts.length}>
           <ContactsListElement
             contacts={filteredContacts}
             deleteContact={this.deleteContact}
@@ -61,3 +66,7 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  filteredContacts: PropTypes.array,
+};
