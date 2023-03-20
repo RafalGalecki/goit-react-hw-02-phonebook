@@ -6,19 +6,40 @@ import Filter from './Filter/Filter';
 import PropTypes from 'prop-types';
 
 export class App extends Component {
+  STORAGE_KEY = 'myContacts';
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    ],
+    contacts: [],
     filter: '',
   };
 
+  // localStorage logic starts here:
+  componentDidMount() {
+    const persistedContacts = localStorage.getItem(this.STORAGE_KEY);
+
+    if (persistedContacts) {
+      this.setState({ contacts: JSON.parse(persistedContacts) });
+      console.log('get on start');
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(
+        this.STORAGE_KEY,
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
+  // // localStorage logic end
+
   addContact = contact => {
-    this.setState({
-      contacts: [...this.state.contacts, contact],
-    });
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }));
+    // THe syntax without localStorage:
+    // this.setState({
+    //   contacts: [...this.state.contacts, contact],
+    // });
   };
 
   deleteContact = id => {
@@ -70,3 +91,8 @@ export class App extends Component {
 App.propTypes = {
   filteredContacts: PropTypes.array,
 };
+
+// mock contacts:
+// { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+// { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+// { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
