@@ -18,7 +18,7 @@ export class App extends Component {
 
     if (persistedContacts) {
       this.setState({ contacts: JSON.parse(persistedContacts) });
-      console.log('get on start');
+  
     }
   }
 
